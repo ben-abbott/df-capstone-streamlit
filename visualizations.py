@@ -35,15 +35,13 @@ def create_all_sector_chart(df):
 
 def create_top_stocks_prices(df):
     top_stocks = df.nsmallest(400, 'overallRank')
-    # price_count = top_stocks['price'].value_counts().reset_index()
     top_stocks_price = top_stocks[(
         top_stocks['price'] > 0) & (top_stocks['price'] < 250)]
-    # top_stocks_price.columns = ['Price', 'Number of Stocks']
     fig = px.histogram(
         top_stocks_price,
         x='price',
         nbins=20,
-        title='Stock Price Distribution'
+        title='Top 400 Stock Price Distribution'
     )
     return fig
 
